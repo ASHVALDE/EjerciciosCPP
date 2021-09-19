@@ -43,12 +43,12 @@ int concat(int a, int b,int c, int d)
 int SortedNumber(int a,int b,int c,int d){
     int tempnum[4]={a,b,c,d};
     int sorted[4] = {0,0,0,0};
-    for (int y=0;y<sizeof(sorted)/sizeof(sorted[0]);y++){
+    for (int & y : sorted){
 
         int indx=0;
         for (int x=0;x<sizeof(tempnum)/sizeof(tempnum[0]);x++){
-            if (tempnum[x]>sorted[y]){
-                sorted[y]=tempnum[x];
+            if (tempnum[x]>y){
+                y=tempnum[x];
                 indx=x;
             }
 
@@ -58,18 +58,21 @@ int SortedNumber(int a,int b,int c,int d){
     return (concat(sorted[0],sorted[1],sorted[2],sorted[3]) - concat(sorted[3],sorted[2],sorted[1],sorted[0]) );
 }
 
-int main(){
+int mainX(){
+    int repeticiones;
+    cin>>repeticiones;
+    for (int x=0;x<repeticiones;x++) {
+        int resultado = 3524;
+        int iteraciones = 0;
+        cin >> resultado;
 
-    int resultado = 3524;
-    int iteraciones =0;
-    cout<<"Ingrese un numero de 4 cifras: ";
-    cin>>resultado;
-    cout<<endl;
-    do{
-        resultado = SortedNumber(integerToArray(resultado)[0],integerToArray(resultado)[1],integerToArray(resultado)[2],integerToArray(resultado)[3]);
-        cout<<resultado<<endl;
-        iteraciones++;
-    }while(resultado!=6174);
+        do {
+            resultado = SortedNumber(integerToArray(resultado)[0], integerToArray(resultado)[1],
+                                     integerToArray(resultado)[2], integerToArray(resultado)[3]);
+            iteraciones++;
+        } while (resultado != 6174);
 
-    cout<<endl<<"Este numero tiene "<<iteraciones<<" iteraciones";
+        cout << iteraciones;
+    }
+    return 0;
 }
